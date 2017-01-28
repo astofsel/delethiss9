@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    {% load staticfiles %}
+    {% load djng_tags %}
+
+
+    <!-- Angular Libraries -->
+    <script src= '{% static 'js/Libraries_Ng/angular.js' %}'> </script> 
+    <script src= '{% static 'js/Libraries_Ng/djng/js/django-angular.js' %}'> </script> 
+
+<script type="text/javascript">
+
+var myAppModule = angular.module('myApp', ['djng.rmi']);
+
+var tags = {% djng_current_rmi %}
+
+console.log(tags)
+myAppModule.config(function(djangoRMIProvider, $httpProvider) {
+    
+    djangoRMIProvider.configure(tags);
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+});
+
+myAppModule.controller("SinglePageCtlr", ['$scope', 'djangoRMI',
+    function($scope, djangoRMI) {
+    $scope.invoke = function() {
+        console.log(djangoRMI)
+        var to = $scope.to 
+        var subject = $scope.subject
+        var email = $scope.email 
+        var in_data = { email_body: email, email_subject: subject, email_to: to };
+        djangoRMI.testInvoke(in_data)
+           .success(function(out_data) {
+           });
+    };
+}]);
+
+</script>
+       
+
+  </head>
+
+  <body>
+
+      <div ng-app='myApp' ng-controller='SinglePageCtlr'>
+
+        <input textarea id='to' ng-model='to'> 
+        <input textarea id='subject' ng-model='subject'> 
+        <input textarea id='email' ng-model='email'> 
+        <div ng-click='invoke()'>
+            <button>
+                <md-icon class="material-icons">add</md-icon>
+            </button> 
+        </div>
+      </div>
+
+
+
+
+  </body>
+
+</html>

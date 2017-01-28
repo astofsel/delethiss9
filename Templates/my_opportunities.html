@@ -1,0 +1,787 @@
+<md-button ng-click='addModal()' class="md-raised md-primary">
+  <md-icon class="material-icons">add</md-icon>
+</md-button>  
+
+<md-content layout-gt-sm="row"  layout='column'>
+
+
+
+
+      <md-card class='opportunityCard' md-theme-watch>
+      <div style='width:250px'> </div>
+
+        <md-card-title class="md-whiteframe-1dp" layout="column" flex-gt-sm='none' layout-align="start center" '>
+
+          <md-card-title-text>
+            <span class="md-headline">Unqualified</span>
+          </md-card-title-text>
+
+        </md-card-title>
+
+        <md-card-title class="md-whiteframe-1dp" layout="column" layout-padding='none' layout-align="center end" style='max-height: 40px'>
+
+          <md-card-title-text>
+            <span class="md-subhead" style='padding:0px' >Total value: {%verbatim%} {{ unqualifiedTotalSize | currency: "£" :0}} {%endverbatim%}</span>
+          </md-card-title-text>
+            <span class="md-subhead"></span>
+
+        </md-card-title>
+
+        
+        <div ng-repeat='unqualified in vm.unqualifiedOpportunities'  >
+        <a style='text-decoration:none'>
+        <md-card-title layout='column'>
+
+        <div  layout='row' layout-align='center star'>
+
+          <md-card-title-text layout='column'>
+            <span class="md-subhead" >{%verbatim%} {{ unqualified.lead.name }} {%endverbatim%}</span>
+          </md-card-title-text>
+
+          
+          <md-menu>
+                <md-button aria-label='Open interactions menu' ng-click='openMenu($mdOpenMenu, $event)' class="md-icon-button" aria-label="More" >
+                    <i class="material-icons">more_horiz</i>
+                </md-button>
+
+                <md-menu-content width='4'>
+                    
+                    <md-menu-item>
+                        <md-button href='#leads/{%verbatim%}{{unqualified.lead.id}}{%endverbatim%}'> 
+                            <i class='material-icons'>open_in_browser</i>
+                            <span> View lead </span>
+                        </md-button>
+                    </md-menu-item>
+
+                    <md-menu-item>
+                        <md-button ng-click='editOppModal(unqualified, $event)'> 
+                            <i class='material-icons'>monetization_on</i>
+                            <span> Edit Opportunity </span>
+                        </md-button>
+                    </md-menu-item>
+
+                    <md-menu-divider></md-menu-divider>
+
+
+                    <md-menu-item >                        
+                        <md-button ng-click='deleteOpp($event, unqualified)'> 
+                            <i class='material-icons'>delete</i>
+                            <span> Delete </span>
+                        </md-button>
+                    </md-menu-item>
+
+                </md-menu-content>
+            </md-menu>
+        </div>
+
+
+        <div layout='row'> 
+
+        <md-card-title-text layout-align='center start'>
+            <span class="md-subhead" >{%verbatim%} {{ unqualified.formattedDateClose }} {%endverbatim%}</span>
+        </md-card-title-text>
+        
+        <md-card-title-text layout='column' layout-align-gt-sm='center end'>
+            <span class="md-subhead" >{%verbatim%} {{ unqualified.size | currency: " £" :0}} {%endverbatim%}</span>
+          </md-card-title-text>
+
+        </div>
+
+        </md-card-title> 
+        <md-divider ></md-divider>        
+        </a>
+        </div>
+      
+        
+
+      </md-card>
+
+
+
+      <md-card class='opportunityCard' md-theme-watch>
+      <div style='width:250px'> </div>
+
+        <md-card-title class="md-whiteframe-1dp" layout="column" flex-gt-sm='none' layout-align="start center" '>
+
+          <md-card-title-text>
+            <span class="md-headline">Contacted</span>
+          </md-card-title-text>
+
+        </md-card-title>
+
+        <md-card-title class="md-whiteframe-1dp" layout="column" layout-padding='none' layout-align="center end" style='max-height: 40px'>
+
+          <md-card-title-text>
+            <span class="md-subhead" style='padding:0px' >Total value: {%verbatim%} {{ contactedTotalSize | currency: "£" :0}} {%endverbatim%}</span>
+          </md-card-title-text>
+            <span class="md-subhead"></span>
+
+        </md-card-title>
+
+        
+        <div ng-repeat='contacted in vm.contactedOpportunities'  >
+        <a style='text-decoration:none'>
+        <md-card-title layout='column'>
+
+        <div  layout='row' layout-align='center star'>
+
+          <md-card-title-text layout='column'>
+            <span class="md-subhead" >{%verbatim%} {{ contacted.lead.name }} {%endverbatim%}</span>
+          </md-card-title-text>
+
+          
+          <md-menu>
+                <md-button aria-label='Open interactions menu' ng-click='openMenu($mdOpenMenu, $event)' class="md-icon-button" aria-label="More" >
+                    <i class="material-icons">more_horiz</i>
+                </md-button>
+
+                <md-menu-content width='4'>
+                    
+                    <md-menu-item>
+                        <md-button href='#leads/{%verbatim%}{{contacted.lead.id}}{%endverbatim%}'> 
+                            <i class='material-icons'>open_in_browser</i>
+                            <span> View lead </span>
+                        </md-button>
+                    </md-menu-item>
+
+                    <md-menu-item>
+                        <md-button ng-click='editOppModal(contacted, $event)'> 
+                            <i class='material-icons'>monetization_on</i>
+                            <span> Edit Opportunity </span>
+                        </md-button>
+                    </md-menu-item>
+
+                    <md-menu-divider></md-menu-divider>
+
+
+                    <md-menu-item >                        
+                        <md-button ng-click='deleteOpp($event, contacted)'> 
+                            <i class='material-icons'>delete</i>
+                            <span> Delete </span>
+                        </md-button>
+                    </md-menu-item>
+
+                </md-menu-content>
+            </md-menu>
+        </div>
+
+
+        <div layout='row'> 
+
+        <md-card-title-text layout-align='center start'>
+            <span class="md-subhead" >{%verbatim%} {{ contacted.formattedDateClose }} {%endverbatim%}</span>
+        </md-card-title-text>
+        
+        <md-card-title-text layout='column' layout-align-gt-sm='center end'>
+            <span class="md-subhead" >{%verbatim%} {{ contacted.size | currency: " £" :0}} {%endverbatim%}</span>
+          </md-card-title-text>
+
+        </div>
+
+        </md-card-title> 
+        <md-divider ></md-divider>        
+        </a>
+        </div>
+      
+        
+
+      </md-card>
+
+
+
+
+
+
+
+      <md-card class='opportunityCard' md-theme-watch>
+      <div style='width:250px'> </div>
+
+        <md-card-title class="md-whiteframe-1dp" layout="column" flex-gt-sm='none' layout-align="start center" '>
+
+          <md-card-title-text>
+            <span class="md-headline">Meeting</span>
+          </md-card-title-text>
+
+        </md-card-title>
+
+        <md-card-title class="md-whiteframe-1dp" layout="column" layout-padding='none' layout-align="center end" style='max-height: 40px'>
+
+          <md-card-title-text>
+            <span class="md-subhead" style='padding:0px' >Total value: {%verbatim%} {{ meetingTotalSize | currency: "£" :0}} {%endverbatim%}</span>
+          </md-card-title-text>
+            <span class="md-subhead"></span>
+
+        </md-card-title>
+
+        
+        <div ng-repeat='meeting in vm.meetingOpportunities'  >
+        <a style='text-decoration:none'>
+        <md-card-title layout='column'>
+
+        <div  layout='row' layout-align='center star'>
+
+          <md-card-title-text layout='column'>
+            <span class="md-subhead" >{%verbatim%} {{ meeting.lead.name }} {%endverbatim%}</span>
+          </md-card-title-text>
+
+          
+          <md-menu>
+                <md-button aria-label='Open interactions menu' ng-click='openMenu($mdOpenMenu, $event)' class="md-icon-button" aria-label="More" >
+                    <i class="material-icons">more_horiz</i>
+                </md-button>
+
+                <md-menu-content width='4'>
+                    
+                    <md-menu-item>
+                        <md-button href='#leads/{%verbatim%}{{meeting.lead.id}}{%endverbatim%}'> 
+                            <i class='material-icons'>open_in_browser</i>
+                            <span> View lead </span>
+                        </md-button>
+                    </md-menu-item>
+
+                    <md-menu-item>
+                        <md-button ng-click='editOppModal(meeting, $event)'> 
+                            <i class='material-icons'>monetization_on</i>
+                            <span> Edit Opportunity </span>
+                        </md-button>
+                    </md-menu-item>
+
+                    <md-menu-divider></md-menu-divider>
+
+
+                    <md-menu-item >                        
+                        <md-button ng-click='deleteOpp($event, meeting)'> 
+                            <i class='material-icons'>delete</i>
+                            <span> Delete </span>
+                        </md-button>
+                    </md-menu-item>
+
+                </md-menu-content>
+            </md-menu>
+        </div>
+
+
+        <div layout='row'> 
+
+        <md-card-title-text layout-align='center start'>
+            <span class="md-subhead" >{%verbatim%} {{ meeting.formattedDateClose }} {%endverbatim%}</span>
+        </md-card-title-text>
+        
+        <md-card-title-text layout='column' layout-align-gt-sm='center end'>
+            <span class="md-subhead" >{%verbatim%} {{ meeting.size | currency: " £" :0}} {%endverbatim%}</span>
+          </md-card-title-text>
+
+        </div>
+
+        </md-card-title> 
+        <md-divider ></md-divider>        
+        </a>
+        </div>
+      
+        
+
+      </md-card>
+
+
+
+      <md-card class='opportunityCard' md-theme-watch>
+      <div style='width:250px'> </div>
+
+        <md-card-title class="md-whiteframe-1dp" layout="column" flex-gt-sm='none' layout-align="start center" '>
+
+          <md-card-title-text>
+            <span class="md-headline">Negotiating</span>
+          </md-card-title-text>
+
+        </md-card-title>
+
+        <md-card-title class="md-whiteframe-1dp" layout="column" layout-padding='none' layout-align="center end" style='max-height: 40px'>
+
+          <md-card-title-text>
+            <span class="md-subhead" style='padding:0px' >Total value: {%verbatim%} {{ negotiatingTotalSize | currency: "£" :0}} {%endverbatim%}</span>
+          </md-card-title-text>
+            <span class="md-subhead"></span>
+
+        </md-card-title>
+
+        
+        <div ng-repeat='negotiating in vm.negotiatingOpportunities'  >
+        <a style='text-decoration:none'>
+        <md-card-title layout='column'>
+
+        <div  layout='row' layout-align='center star'>
+
+          <md-card-title-text layout='column'>
+            <span class="md-subhead" >{%verbatim%} {{ negotiating.lead.name }} {%endverbatim%}</span>
+          </md-card-title-text>
+
+          
+          <md-menu>
+                <md-button aria-label='Open interactions menu' ng-click='openMenu($mdOpenMenu, $event)' class="md-icon-button" aria-label="More" >
+                    <i class="material-icons">more_horiz</i>
+                </md-button>
+
+                <md-menu-content width='4'>
+                    
+                    <md-menu-item>
+                        <md-button href='#leads/{%verbatim%}{{negotiating.lead.id}}{%endverbatim%}'> 
+                            <i class='material-icons'>open_in_browser</i>
+                            <span> View lead </span>
+                        </md-button>
+                    </md-menu-item>
+
+                    <md-menu-item>
+                        <md-button ng-click='editOppModal(negotiating, $event)'> 
+                            <i class='material-icons'>monetization_on</i>
+                            <span> Edit Opportunity </span>
+                        </md-button>
+                    </md-menu-item>
+
+                    <md-menu-divider></md-menu-divider>
+
+
+                    <md-menu-item >                        
+                        <md-button ng-click='deleteOpp($event, negotiating)'> 
+                            <i class='material-icons'>delete</i>
+                            <span> Delete </span>
+                        </md-button>
+                    </md-menu-item>
+
+                </md-menu-content>
+            </md-menu>
+        </div>
+
+
+        <div layout='row'> 
+
+        <md-card-title-text layout-align='center start'>
+            <span class="md-subhead" >{%verbatim%} {{ negotiating.formattedDateClose }} {%endverbatim%}</span>
+        </md-card-title-text>
+        
+        <md-card-title-text layout='column' layout-align-gt-sm='center end'>
+            <span class="md-subhead" >{%verbatim%} {{ negotiating.size | currency: " £" :0}} {%endverbatim%}</span>
+          </md-card-title-text>
+
+        </div>
+
+        </md-card-title> 
+        <md-divider ></md-divider>        
+        </a>
+        </div>
+      
+        
+
+      </md-card>
+
+
+
+
+      <md-card class='opportunityCard' md-theme-watch>
+      <div style='width:250px'> </div>
+
+        <md-card-title class="md-whiteframe-1dp" layout="column" flex-gt-sm='none' layout-align="start center" '>
+
+          <md-card-title-text>
+            <span class="md-headline">Closed</span>
+          </md-card-title-text>
+
+        </md-card-title>
+
+        <md-card-title class="md-whiteframe-1dp" layout="column" layout-padding='none' layout-align="center end" style='max-height: 40px'>
+
+          <md-card-title-text>
+            <span class="md-subhead" style='padding:0px' >Total value: {%verbatim%} {{ closedTotalSize | currency: "£" :0}} {%endverbatim%}</span>
+          </md-card-title-text>
+            <span class="md-subhead"></span>
+
+        </md-card-title>
+
+        
+        <div ng-repeat='closed in vm.closedOpportunities'  >
+        <a style='text-decoration:none'>
+        <md-card-title layout='column'>
+
+        <div  layout='row' layout-align='center star'>
+
+          <md-card-title-text layout='column'>
+            <span class="md-subhead" >{%verbatim%} {{ closed.lead.name }} {%endverbatim%}</span>
+          </md-card-title-text>
+
+          
+          <md-menu>
+                <md-button aria-label='Open interactions menu' ng-click='openMenu($mdOpenMenu, $event)' class="md-icon-button" aria-label="More" >
+                    <i class="material-icons">more_horiz</i>
+                </md-button>
+
+                <md-menu-content width='4'>
+                    
+                    <md-menu-item>
+                        <md-button href='#leads/{%verbatim%}{{closed.lead.id}}{%endverbatim%}'> 
+                            <i class='material-icons'>open_in_browser</i>
+                            <span> View lead </span>
+                        </md-button>
+                    </md-menu-item>
+
+                    <md-menu-item>
+                        <md-button ng-click='editOppModal(closed, $event)'> 
+                            <i class='material-icons'>monetization_on</i>
+                            <span> Edit Opportunity </span>
+                        </md-button>
+                    </md-menu-item>
+
+                    <md-menu-divider></md-menu-divider>
+
+
+                    <md-menu-item >                        
+                        <md-button ng-click='deleteOpp($event, closed)'> 
+                            <i class='material-icons'>delete</i>
+                            <span> Delete </span>
+                        </md-button>
+                    </md-menu-item>
+
+                </md-menu-content>
+            </md-menu>
+        </div>
+
+
+        <div layout='row'> 
+
+        <md-card-title-text layout-align='center start'>
+            <span class="md-subhead" >{%verbatim%} {{ closed.formattedDateClose }} {%endverbatim%}</span>
+        </md-card-title-text>
+        
+        <md-card-title-text layout='column' layout-align-gt-sm='center end'>
+            <span class="md-subhead" >{%verbatim%} {{ closed.size | currency: " £" :0}} {%endverbatim%}</span>
+          </md-card-title-text>
+
+        </div>
+
+        </md-card-title> 
+        <md-divider ></md-divider>        
+        </a>
+        </div>
+      
+        
+
+      </md-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</md-content>
+
+
+
+
+
+
+
+
+
+
+<!-- Below is the add modal, hidden until prompted. Ideally this should be in 
+    a separate template and file -->
+    <div style="visibility: hidden">
+      <div class="md-dialog-container" id="addModal" ng-coak>
+            <md-dialog flex>
+
+                <md-toolbar>
+                  <div class="md-toolbar-tools">
+                    <h2>Add </h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()">
+                      <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                    </md-button>
+                  </div>
+                </md-toolbar>
+
+
+
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="opportunity">
+
+
+                <md-content flex layout-padding>
+
+                    <form name="projectForm">
+
+                        <div layout='row'>
+
+                        <md-input-container class="md-block" flex='50'>
+                            <label>Lead</label>
+                                <md-select required name='lead' ng-model='vm.addOpportunity.lead'>
+                                    <md-option ng-repeat ='lead in leadList' ng-value='lead'>
+                                        {%verbatim%} {{ lead.name }} {%endverbatim%} 
+                                    </md-option>
+                                </md-select>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex='50'>
+
+                            <label>Size</label>
+                            <input type='number' step='any' name='size' ng-model='vm.addOpportunity.size' required />
+
+
+                        </md-input-container>
+
+                        </div>
+
+
+
+                        <div layout="row">
+
+                            <md-input-container flex="50">
+                                <label>Qualify</label>
+                                <md-select required name="contact" ng-model="vm.addOpportunity.qualify">
+
+                                    <md-option  value='unqualified'>Unqualified</md-option>
+                                    <md-option  value='contacted'>Contacted</md-option>
+                                    <md-option  value='meeting'>Meeting</md-option>
+                                    <md-option  value='negotiating'>Negotiating</md-option>
+                                    <md-option  value='closed'>Closed</md-option>
+                                                                    
+                                    </md-option>
+                            </md-input-container>
+
+                            <md-datepicker flex="50" ng-model='vm.addOpportunity.DateCloseUnformatted' md-placeholder = 'Expected close' required>
+                            </md-datepicker>
+                        </div>
+
+                        <md-input-container class="md-block">
+                            <label>Comments</label>
+                                <textarea id='textarea' md-maxlength="300" rows="5" ng-model="vm.addOpportunity.comments"  md-select-on-focus ></textarea>
+                        </md-input-container>
+
+
+
+
+                        <div layout='row' layout-align='end end'>
+                            <md-button type="submit" ng-click='addModalOpportunitySubmit()'>Add opportunity</md-button>
+                        </div>
+                    
+
+                    </form>
+                </md-content>   
+
+                </md-tab>
+
+
+
+
+
+
+
+                <md-tab label="lead">
+
+                <md-content flex layout-padding>
+
+                    <form name="projectForm">
+
+
+                        <div layout='row'>
+
+                        <md-input-container class="md-block" flex='50' required>
+                            <label>Name</label>
+                                <input required name='name' ng-model='vm.addLead.name'>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex='50'>
+
+                            <label>Phone number</label>
+                            <input name='PhoneNumber' ng-model='vm.addLead.PhoneNumber'  />
+
+                        </md-input-container>
+
+                        </div>
+
+
+
+                        <div layout="row">
+
+                            <md-input-container flex="50">
+                                <label>Email</label>
+                                <input name="email" ng-model="vm.addLead.EmailAddress" type='email'>
+                            </md-input-container>
+
+                            <md-input-container flex="50">
+                                <label>URL</label>
+                                <input name="URL" ng-model="vm.addLead.URL" type='text'>
+                            </md-input-container>
+                        </div>
+
+
+
+
+                        <div layout='row' layout-align='end end'>
+                            <md-button type="submit" ng-click='addModalLeadSubmit()'>Add lead</md-button>
+                        </div>
+                    
+
+                    </form>
+                </md-content> 
+                </md-tab>
+
+
+
+        <md-tab label="contact">
+
+
+                <md-content flex layout-padding>
+
+                    <form name="projectForm">
+
+
+                        <div layout='row'>
+
+                        <md-input-container class="md-block" flex='50' required>
+                            <label>First name</label>
+                                <input name='fname' ng-model='vm.addContact.fname' type='text'>
+                        </md-input-container>
+
+
+                        <md-input-container class="md-block" flex='50' required>
+                            <label>Last name</label>
+                                <input name='lname' ng-model='vm.addContact.lname' type='text'>
+                        </md-input-container>
+
+                        </div>
+
+
+
+                        <div layout="row">
+
+                            <md-input-container flex="50">
+                                <label>Email</label>
+                                <input name="email" ng-model="vm.addContact.email" type='email'>
+                            </md-input-container>
+
+
+                            <md-input-container class="md-block" flex='50'>
+
+                                <label>Phone number</label>
+                                <input name='PhoneNumber' ng-model='vm.addContact.PhoneNumber'  />
+
+                            </md-input-container>
+
+                        </div>
+
+
+                        <md-input-container class="md-block">
+                            <label>Lead</label>
+                                <md-select name='lead' ng-model='vm.addContact.lead'>
+                                    <md-option ng-repeat ='lead in leadList' ng-value='lead'>
+                                        {%verbatim%} {{ lead.name }} {%endverbatim%} 
+                                    </md-option>
+                                </md-select>
+                        </md-input-container>
+
+
+
+
+                        <div layout='row' layout-align='end end'>
+                            <md-button type="submit" ng-click='addModalContactSubmit()'>Add contact</md-button>
+                        </div>
+                    
+
+                    </form>
+                </md-content>   
+            </md-dialog>
+        </div>
+    </div>
+
+
+
+
+
+<!-- Below is the edit opp modal, hidden until prompted. Ideally this should be in 
+    a separate template and file -->
+    <div style="visibility: hidden">
+      <div class="md-dialog-container" id="editOppModal" ng-coak>
+            <md-dialog flex>
+
+                <md-toolbar>
+                  <div class="md-toolbar-tools">
+                    <h2>Edit Opportunity </h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()">
+                      <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                    </md-button>
+                  </div>
+                </md-toolbar>
+
+
+
+                <md-content flex layout-padding>
+
+                    <form name="projectForm">
+
+
+                        <div layout='row'>
+
+                        <md-input-container class="md-block" flex='50'>
+                            <label>Lead</label>
+                                <md-select name='lead' ng-model='vm.editOppModal.lead' placeholder='{%verbatim%} {{ opp.lead.name }} {%endverbatim%}'>
+                                    <md-option ng-repeat ='lead in leadList' ng-value='lead'>
+                                        {%verbatim%} {{ lead.name }} {%endverbatim%} 
+                                    </md-option>
+                                </md-select>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex='50'>
+
+                            <label>Size</label>
+                            <input type='number' step='any' name='size' ng-model='vm.editOppModal.size' placeholder='{%verbatim%} {{ opp.size }} {%endverbatim%}' />
+
+
+                        </md-input-container>
+
+                        </div>
+
+
+
+                        <div layout="row">
+
+                            <md-input-container flex="50">
+                                <label>Qualify</label>
+                                <md-select name="contact" ng-model="vm.editOppModal.qualify" placeholder='{%verbatim%} {{ opp.qualify }} {%endverbatim%}'>
+
+                                    <md-option  value='unqualified'>Unqualified</md-option>
+                                    <md-option  value='contacted'>Contacted</md-option>
+                                    <md-option  value='meeting'>Meeting</md-option>
+                                    <md-option  value='negotiating'>Negotiating</md-option>
+                                    <md-option  value='closed'>Closed</md-option>
+                                                                    
+                                </md-select>
+                            </md-input-container>
+
+                            <md-datepicker flex="50" ng-model='vm.editOppModal.DateCloseUnformatted' md-placeholder='{%verbatim%} {{ opp.formattedDateClose }} {%endverbatim%}'>
+                            </md-datepicker>
+                        </div>
+
+                        <md-input-container class="md-block">
+                            <label>Comments</label>
+                                <textarea id='textarea' md-maxlength="300" rows="5" ng-model="vm.editOppModal.comments" placeholder='{%verbatim%} {{ opp.comments }} {%endverbatim%}' md-select-on-focus ></textarea>
+                        </md-input-container>
+
+
+
+
+                        <div layout='row' layout-align='end end'>
+                            <md-button type="submit" ng-click='editOppModalSubmit(opp)'>Edit opportunity</md-button>
+                        </div>
+                    
+
+                    </form>
+                </md-content>   
+            </md-dialog>
+        </div>
+    </div>

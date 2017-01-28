@@ -1,0 +1,139 @@
+<div layout-align="center stretch" layout-wrap ng-controller='NextActionCtrl as vm'> 
+
+<section layout='row' layout-align='start center'>
+    <div layout="row" flex>
+        <div>
+        <md-button ng-click='addTaskModal()' class="md-raised md-primary">
+            <md-icon class="material-icons">add</md-icon>
+        </md-button>      
+        </div>
+        <div>
+        <md-button class="md-raised md-primary" ng-click="showSearch = !showSearch">
+        <md-icon class="material-icons">search</md-icon>
+            <ng-md-icon icon="search"></ng-md-icon>
+        </md-button>
+        </div>
+    <div style='height:50px'>
+      <md-input-container ng-show="showSearch" flex class="md-icon-float md-block md-title">
+        <label>Search</label>
+        <input type="text" ng-model="search">
+      </md-input-container>
+    </div>
+      
+    </div>    
+  </section>
+
+
+
+
+    <md-card style='padding-bottom:20px;' layout-gt-sm='row' layout='column' md-theme='default' md-theme-watch flex='80' flex-gt-sm='100' ng-repeat="Task in vm.taskList | filter:search" >       
+
+        <md-card-title layout='column' style='padding-top:15px '>
+
+          <md-card-title-text flex>
+            <span class="md-headline"> {%verbatim%} {{ Task.name }} {%endverbatim%}</span>
+            <span style='padding-top: 0px' class="md-subhead">{%verbatim%} {{ Task.formattedDateTime }} {%endverbatim%} </span>
+            <span style='padding-top: 0px' class="md-subhead">{%verbatim%} {{ Task.lead.name }} {%endverbatim%} </span>
+            <span style='padding-top: 0px' class="md-subhead">{%verbatim%} {{ Task.contact.fname }} {{ Task.contact.lname }}, Tel: {{ Task.contact.PhoneNumber }}, Email: {{ Task.contact.email }}{%endverbatim%} </span>
+            <br>
+            <span class="md-content">{%verbatim%} {{ Task.description }} {%endverbatim%} </span>
+          </md-card-title-text>
+
+        </md-card-title>
+        
+        
+        <div layout='column' > 
+            
+            <md-datepicker layout-align='end start' flex id='inputDateTime' ng-model="inputDateTime" md-placeholder= 'Date of call' ></md-datepicker>
+            <md-card-actions style='padding-bottom:20px' flex layout-align-gt-sm='start end' layout-align="end center">
+              <md-button ng-click='amendTask(Task, inputDateTime)' >Amend</md-button>
+              <md-button ng-click='markCompleted(Task)' >Completed</md-button>
+              <md-button ng-click='deleteTask(Task)' >Delete</md-button>
+            </md-card-actions>
+            
+        </div>
+
+        
+
+
+    </md-card>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Below is the modal code, hidden until prompted. Ideally this should be in 
+    a separate template and file -->
+    <div style="visibility: hidden">
+      <div class="md-dialog-container" id="addTaskModal" ng-coak>
+            <md-dialog flex>
+
+                <md-toolbar>
+                  <div class="md-toolbar-tools">
+                    <h2>Schedule Task</h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()">
+                      <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                    </md-button>
+                  </div>
+                </md-toolbar>
+                <md-content flex layout-padding>
+
+                    <form name="projectForm">
+
+
+                        <md-input-container class="md-block">
+                            <label>Task name</label>
+                            <input required id='name' ng-model='vm.addTask.name'>
+                        </md-input-container>
+
+                        <md-input-container class="md-block">
+                            <label>Lead</label>
+                                <md-select name='lead' ng-model='vm.addTask.lead'>
+                                    <md-option required ng-repeat ='lead in leadList' ng-value='lead'>
+                                        {%verbatim%} {{ lead.name }} {%endverbatim%} 
+                                    </md-option>
+                                </md-select>
+                        </md-input-container>
+
+                        <div layout="row">
+
+                            <md-input-container flex="50">
+                                <label>Contact</label>
+                                <md-select name="contact" ng-model="vm.addTask.contact">
+
+                                    <md-option ng-repeat='contact in contactList' ng-value='contact'>
+                                    {%verbatim%} {{ contact.fname + ' ' + contact.lname + ' (' + contact.lead.name + ')'}} {%endverbatim%}                                      
+                                    </md-option>
+                            </md-input-container>
+
+                            <md-datepicker flex="50" ng-model='vm.addTask.inputDateTime' md-placeholder = 'Date and time'>
+                            </md-datepicker>
+                        </div>
+
+                        <md-input-container class="md-block">
+                            <label>Description</label>
+                                <textarea id='textarea' md-maxlength="300" rows="5" ng-model="vm.addTask.description"  md-select-on-focus ></textarea>
+                        </md-input-container>
+
+                        <div layout='row' layout-align='end end'>
+                            <md-button type="submit" ng-click='addTaskModalSubmit()'>Add task</md-button>
+                        </div>
+                    
+
+                    </form>
+                </md-content>   
+            </md-dialog>
+        </div>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    {% load staticfiles %}
+    {% load djng_tags %}
+
+    <title>EasySell - Making sales easy</title>
+
+    <!-- Stylesheets -->
+    <link rel='stylesheet' type='text/css' href='{% static 'bootstrap.min.css' %}'>
+    <link rel='stylesheet' type='text/css' href='{% static 'style.css' %}'>    
+    <link rel='stylesheet' type='text/css' href='{% static 'xeditable.css' %}'> 
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    
+    <!-- Stylesheets for Angular Material -->
+    <link rel="stylesheet" href= '{% static 'bower_components/angular-material/angular-material.css' %}'>
+    <link rel="stylesheet" href= '{% static 'bower_components/angular-material/angular-material.min.css' %}'>
+    <link rel="stylesheet" href= '{% static 'css_libraries/ngDialog.min.css' %}'>
+    <link rel="stylesheet" href= '{% static 'css_libraries/ngDialog-theme-default.min.css' %}'>
+
+    <!-- Moment.js-->
+    <script src= '{% static 'bower_components/moment/moment.js' %}' ></script>
+    <script src= '{% static 'bower_components/moment/moment-timezone-with-data.js' %}' ></script>
+
+    <!-- Angular Libraries -->
+    <script src= '{% static 'js/Libraries_Ng/angular.js' %}'> </script> 
+    <script src= '{% static 'js/Libraries_Ng/djng/js/django-angular.js' %}'> </script> 
+    <script src= '{% static 'js/Libraries_Ng/ngDialog.min.js' %}'> </script>
+    <script src= '{% static 'js/Libraries_Ng/angular-messages.js' %}'> </script>
+    <script src='{% static 'bower_components/angular-aria/angular-aria.js' %}'></script>
+    <script src='{% static 'bower_components/angular-material/angular-material.js' %}'></script>
+    <script src='{% static 'js/Libraries_Ng/svg-assets-cache.js' %}'></script>
+    <script src= '{% static 'js/Libraries_Ng/angular-cookies.js' %}'> </script>    
+    <script src= '{% static 'js/Libraries_Ng/angular-Route.js' %}'> </script>
+    <script src= '{% static 'js/Libraries_Ng/ui-router.js' %}'> </script> 
+    <script src= '{% static 'js/Libraries_Ng/angular-Route.js' %}'> </script>
+    <script src= '{% static 'js/Libraries_Ng/angular-animate.js' %}'> </script> 
+    <script src= '{% static 'js/Libraries_Ng/xeditable.js' %}'> </script> 
+    <script src= '{% static 'js/Libraries_Ng/angular-sanitize.js' %}'> </script> 
+
+
+    
+    <!-- Angular Calling -->
+    <script src='{% static 'js/Calling/mainApp.navbar.services.js' %}'> </script>
+    <script src='{% static 'js/Calling/List/List.module.js' %}'> </script>
+    <script src='{% static 'js/Calling/List/controllers/List.controllers.js' %}'> </script>
+    <script src='{% static 'js/Calling/Nextcall/nextcall.module.js' %}'> </script>
+    <script src='{% static 'js/Calling/Nextcall/controllers/calling.controllers.js' %}'> </script>
+
+    <!-- Angular NextAction -->
+    <script src='{% static 'js/NextAction/NextAction.module.js' %}'> </script>
+    <script src='{% static 'js/NextAction/services/NextAction.services.js' %}'> </script>
+    <script src='{% static 'js/NextAction/controllers/NextAction.controllers.js' %}'> </script>
+
+    <!-- Angular Opportunities -->
+    <script src='{% static 'js/Opportunities/Opportunities.module.js' %}'> </script>
+    <script src='{% static 'js/Opportunities/Opportunities.controller.js' %}'> </script>
+
+    <!-- Angular Leads -->
+    <!-- NG: For some reason the tags are not recognised by Django if I put them in a JS file, and for some reason they work when they are here -->
+    <script type="text/javascript"> tags = {% djng_current_rmi %} </script>
+    <script src='{% static 'js/Leads/leads.controller.js' %}'> </script>
+
+
+    <!-- Angular authentication, toast, navbar & profiles JS -->
+    <script type='text/javascript' src= '{% static 'js/authentication/mainApp.config.js' %}'> </script> 
+    <script type='text/javascript' src= '{% static 'js/authentication/mainApp.routes.js' %}'> </script> 
+    <script type='text/javascript' src= '{% static 'js/Toast/toast.module.js' %}'> </script>
+    <script type='text/javascript' src= '{% static 'js/Toast/toast.services.js' %}'> </script>
+    <script type='text/javascript' src= '{% static 'js/layout/layout.modules.js' %}'> </script>
+    <script type='text/javascript' src= '{% static 'js/layout/controllers/progressCircular.js' %}'> </script>
+    <script type='text/javascript' src= '{% static 'js/authentication/authentication/authentication.module.js' %}'> </script> 
+    <script type='text/javascript' src= '{% static 'js/authentication/authentication/services/authentication.service.js' %}'> </script> 
+    <script type='text/javascript' src= '{% static 'js/authentication/authentication/controllers/register.controller.js' %}'> </script> 
+    <script type='text/javascript' src= '{% static 'js/authentication/authentication/controllers/login.controller.js' %}'> </script> 
+    <script type='text/javascript' src= '{% static 'js/authentication/layout/layout.module.js' %}'> </script> 
+    <script type='text/javascript' src= '{% static 'js/authentication/layout/controllers/navbar.controller.js' %}'> </script> 
+    <script type='text/javascript' src= '{% static 'js/profiles/profiles.module.js' %}'> </script> 
+    <script type='text/javascript' src= '{% static 'js/profiles/services/profile.service.js' %}'> </script> 
+    <script type='text/javascript' src= '{% static 'js/profiles/controllers/profile.controller.js' %}'> </script> 
+    <script type='text/javascript' src= '{% static 'js/profiles/controllers/profile-settings.controller.js' %}'> </script> 
+
+    <!-- Below main Angular app -->
+    <script type='text/javascript' src= '{% static 'js/authentication/mainApp.js' %}'> </script> 
+
+
+
+       
+
+  </head>
+
+  <body>
+
+{% block content %}
+{% endblock %}
+
+  </body>
+
+</html>

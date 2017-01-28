@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load staticfiles %} 
+{% block content %}
+
+<div layout-fill layout="row" flex ng-cloak="" ng-app="mainApp" ng-controller='NavbarController as vm'>
+
+
+  <!-- Beginning of the sidenav -->
+  <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="8">
+
+    <md-toolbar class="md-theme-indigo">
+      <h1 class="md-toolbar-tools">EasySell</h1>
+    </md-toolbar>
+
+    <md-content ng-controller="LeftCtrl">
+
+      <!-- hide-gt-md hides the element if device is bigger than width >= 1280px -->
+      <md-button ng-click="close()" class="md-primary" hide-gt-md="">
+        Close Sidenav
+      </md-button>
+
+      <ul class='side-menu'>
+
+        <md-button ng-class="{'md-raised md-primary': $route.current.activetab == 'next_action'}" 
+          class='md-button md-ink.ripple active' 
+          href="#next_action">Next Action</md-button>
+        <md-button ng-class="{'md-raised md-primary': $route.current.activetab == 'my_opportunities'}" 
+          class='md-button md-ink.ripple active' 
+          href="#my_opportunities">Opportunities</a></md-button>
+        <md-button ng-class="{'md-raised md-primary': $route.current.activetab == 'profile_settings'}" 
+          class='md-button md-ink.ripple active' 
+          href="#profile_settings">My Account</a></md-button>
+        <md-button ng-class="$route.current.activetab == '' ? 'md-raised md-primary' : 'md-button'" 
+          class='md-button md-ink.ripple active'
+          href = 'javascript:void(0)' ng-click='vm.logout()'> Logout </a> </md-button>	   
+
+      </ul>
+
+    </md-content>
+
+  </md-sidenav>
+  <!-- End of sidenav -->
+
+
+
+  
+<div layout-fill>
+     <!-- Begin of topbar only shown on mobile -->
+    <md-toolbar md-scroll-shrink='' style='background-color:#283593' layout="column" layout-align="end start" flex='' hide-gt-md="">
+
+      <md-button  ng-click="toggleLeft()" class="md-icn-button md-primary"  aria-label='Settings'>
+
+        <md-icon md-svg-icon='img/icons/menu.svg'></md-icon>
+
+      </md-button>
+
+    </md-toolbar>
+
+  <md-content layout-fill>
+
+    <div>
+
+      <div ng-view></div> 
+
+    </div>
+
+  </md-content>
+</div>
+
+</div>
+
+
+
+
+
+
+{% endblock %}

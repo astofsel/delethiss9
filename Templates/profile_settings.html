@@ -1,0 +1,47 @@
+
+
+<md-card layout-padding>
+  <div ng-show="vm.profile" >
+  <md-content >
+    <form style='background-color: white' layout='column' role="form" class="settings" ng-submit="vm.update()">
+      
+      <md-input-container>
+        <label for="settings__username">Name</label>
+        <input type="text" id="settings__username" ng-model="vm.profile.username"/>
+      </md-input-container>
+
+      <md-input-container >
+        <label for="settings__email">Email</label>
+        <input type="text" id="settings__email" ng-model="vm.profile.email"/>
+      </md-input-container>
+
+      <md-input-container >
+        <label for="settings__password">New Password</label>
+        <input type="password" id="settings__password" ng-model="vm.profile.password" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="settings__confirm-password">Confirm Password</label>
+        <input type="password" id="settings__confirm-password" ng-model="vm.profile.confirm_password"/>
+      </md-input-container>
+
+      
+
+      {% load static %}
+      <div layout-align='row'>
+            <img style='max-height: 160px; max-width: 160px' type="image" src="{% static "media/google_btn.png" %}" ng-click='gmailLogin()'>
+            <md-button class="md-raised " ng-click='deleteCredentials($event)'>Delete Google credentials</md-button>
+      </div>
+
+
+
+      <md-input-container flex>
+        <md-button type="submit" class="md-raised md-primary">Submit</md-button>
+        <md-button type="button" class="md-raised md-warn pull-right" ng-click="vm.destroy($event)">Delete Account</md-button>
+      </md-input-container>
+    </form>
+
+
+    </md-content>
+  </div>
+</md-card>

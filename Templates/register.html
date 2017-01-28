@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load staticfiles %} 
+{% block content %}
+
+<div ng-app='mainApp' layout-fill>
+
+<!-- Using Angular Material 6.1 + Jade Templates-->
+<div ng-controller='RegisterController as vm' layout="column" layout-align="center center" layout-fill="layout-fill">
+  <div style='min-width: 400px!important' layout="column" class="loginBox md-whiteframe-z1">
+    <md-toolbar>
+      <h2 class="md-toolbar-tools"><span>Register</span></h2>
+    </md-toolbar>
+
+    <md-content role="form" layout="column" class="md-padding">
+      <md-input-container>
+        <label>Email</label>
+        <input type="email" id="login__email" ng-model="vm.email" required/>
+      </md-input-container>
+      <md-input-container>
+        <label>Name</label>
+        <input type="text" ng-model="vm.username" required/>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Password</label>
+        <input type="password" ng-model="vm.password" required/>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Confirm passsword</label>
+        <input type='password' ng-model="vm.confirmPassword" name="confirmPassword" required/>
+      </md-input-container>
+
+
+
+      <div layout="row" layout-align="center center" style="padding-top:20px;">
+        <md-button type='submit' ng-click= 'vm.register()' class="md-raised md-primary">Register</md-button>
+      </div>
+
+
+    </md-content>
+
+  </div>
+</div>
+
+
+</div>
+
+{% endblock %}
+
+

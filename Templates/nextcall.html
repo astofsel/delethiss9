@@ -1,0 +1,22 @@
+<div style='padding-top:20px' ng-controller='NextcallController as vm'>
+	<h3> Next to contact:</h3> 
+	<div class="panel panel-primary">
+		<div class="panel-heading" id='CompanyName'>{%verbatim%} {{vm.nextCompany.CompanyName}} {%endverbatim%}</div>
+		<div class="panel-body">	
+		 <div  href='#' id='ContactName'>Contact Name: <strong editable-text='vm.nextCompany.ContactName'>{%verbatim%}{{vm.nextCompany.ContactName}}{%endverbatim%} </strong></div> 
+
+		Next Follow Up: <b><a id='Next_FU' href='#' editable-datetime='vm.nextCompany.Next_FU'>{%verbatim%}{{ (vm.nextCompany.Next_FU | date: 'HH:mm, dd-MM-y') || 'empty' }}{%endverbatim%}</a>  </b>	
+		<!-- The below is the code for the ngMat datepicker. Now it gives error that it is given a string as a date. It needs a Date Instanc
+e		<md-datepicker ng-model="vm.nextCompany.Next_FU" md-placeholder="Enter date"></md-datepicker> -->
+		</br> 
+
+		Notes:<br>
+		<textarea id='notes' cols="100" rows="10">{%verbatim%}{{vm.nextCompany.Notes_CallAccount}}{%endverbatim%}</textarea>	
+		</div>
+	</div>
+	<md-button class="md-primary md-raised edgePadding" style='float: right' go-click="SelectCallAccount" > Go to Account List </md-button> 
+	<md-button class="md-primary md-raised edgePadding" style='float: right; margin-right: 5px' go-click="" > Send email </md-button> 
+	<md-button class="md-primary md-raised edgePadding" style='float: right; margin-right: 5px' ng-click= 'vm.CallBackLater("Next_FU", "notes", vm.nextCompany); reloadRoute()' > Contact later </md-button> 
+	<md-button class="md-primary md-raised edgePadding" style='float: right; margin-right: 5px' go-click="" > Schedule </md-button> 
+</div> 
+

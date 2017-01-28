@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load staticfiles %} 
+{% block content %}
+
+
+
+
+
+<div ng-app='mainApp' layout-fill >
+
+
+<!-- Using Angular Material 6.1 + Jade Templates-->
+<div ng-controller='LoginController as vm' layout="column" layout-align="center center" layout-fill="layout-fill">
+  <div style='min-width: 300px!important' layout="column" class="loginBox md-whiteframe-z1">
+    <md-toolbar>
+      <h2 class="md-toolbar-tools"><span>Login</span></h2>
+    </md-toolbar>
+
+    <md-content role="form" layout="column" class="md-padding">
+      <md-input-container>
+        <label>EmailAddress</label>
+        <input type="email" id="login__email" ng-model="vm.email"/>
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input type="password" id="login__password" ng-model="vm.password"/>
+      </md-input-container>
+      <div layout="row" layout-align="center center" style="padding-top:20px;">
+        <md-button type='submit' ng-click= 'vm.login()' class="md-raised md-primary">Login</md-button>
+      </div>
+    </md-content>
+
+  </div>
+</div>
+
+
+</div>
+
+
+{% endblock %}
